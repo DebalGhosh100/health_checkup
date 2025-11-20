@@ -48,8 +48,6 @@ echo -e "${YELLOW}Fetching: https://raw.githubusercontent.com/DebalGhosh100/bloc
 # With pipefail set, this will fail if curl OR bash fails.
 if curl -fsSL https://raw.githubusercontent.com/DebalGhosh100/blocks/main/run_blocks.sh | bash; then
   echo -e "${GREEN}✓ Blocks script executed successfully${NC}"
-else
-  echo -e "${RED}✗ Blocks script failed with exit code ${status}${NC}"
 fi
 
 echo -e "Done"
