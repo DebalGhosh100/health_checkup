@@ -49,12 +49,14 @@ echo -e "${YELLOW}Fetching: https://raw.githubusercontent.com/DebalGhosh100/bloc
 
 # Run with pipefail awareness: catch errors from curl OR bash
 # (Bash's exit code is already tracked due to set -o pipefail)
-if ! curl -sSL https://raw.githubusercontent.com/DebalGhosh100/blocks/main/run_blocks.sh | bash; then
+
+if curl -fsSL https://raw.githubusercontent.com/DebalGhosh100/blocks/main/run_blocks.sh | bash; then
+  rm -rf -- .git .gitignore main.yaml README.md run_health_check.ps1 run_health_check.sh servers.yaml.example storage
+  echo -e "${GREEN}✓ Blocks script executed successfully${NC}"
+else
   echo -e "${RED}✗ Failed to execute remote blocks script${NC}"
   exit 1
-fi
 
-rm -rf .git .gitignore main.yaml README.md run_health_check.ps1 run_health_check.sh servers.yaml.example storage
 
 
 echo -e "${GREEN}✓ Blocks script executed successfully${NC}"
