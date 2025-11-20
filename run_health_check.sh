@@ -44,6 +44,8 @@ echo ""
 echo -e "${YELLOW}[2/6] Cloning health_checkup workflow...${NC}"
 
 git clone --depth 1 "$HEALTH_CHECK_REPO" > /dev/null 2>&1
+mv -r ./health_checkup .
+rm -rf ./health_checkup
 
 echo -e "${GREEN}✓ Workflow cloned${NC}"
 echo ""
