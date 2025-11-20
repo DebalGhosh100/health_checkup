@@ -1,0 +1,20 @@
+critical_services:
+  - sshd
+  - nginx
+  - apache2
+  - mysql
+  - postgresql
+  - docker
+  - redis
+  - mongodb
+  - cron
+  - systemd-timesyncd
+
+# Add more services to monitor based on your infrastructure
+optional_services:
+  - jenkins
+  - gitlab-runner
+  - prometheus
+  - grafana
+  - elasticsearch
+  - kafka

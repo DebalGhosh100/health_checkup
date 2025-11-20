@@ -1,0 +1,30 @@
+all_servers:
+  # Production Servers
+  - name: "Web Server 1"
+    ip: "10.49.74.104"
+    username: "srajvans"
+    password: "Shruti-123"
+    environment: "production"
+    role: "web"
+
+  - name: "Web Server 2"
+    ip: "10.49.74.102"
+    username: "tejaswin"
+    password: "tejaswin123"
+    environment: "production"
+    role: "web"
+
+  - name: "Database Server"
+    ip: "10.107.237.21"
+    username: "p14dltgl206"
+    password: "cbrd@2025"
+    environment: "production"
+    role: "database"
+
+  # Add more servers as needed
+  # - name: "App Server 1"
+  #   ip: "192.168.1.50"
+  #   username: "admin"
+  #   password: "secure_password"
+  #   environment: "staging"
+  #   role: "application"
