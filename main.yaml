@@ -1,6 +1,6 @@
 blocks:
   # Copy servers.yaml from current directory to storage (if it exists)
-  - run: mkdir -p ./storage && cp ../servers.yaml ./storage/servers.yaml
+  - run: mkdir -p ./storage && cp ./servers.yaml ./storage/servers.yaml
 
   # Initialize health check environment
   - run: mkdir -p ./health_reports
