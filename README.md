@@ -124,24 +124,6 @@ python3 ../blocks/blocks_executor.py main.yaml
 
 ---
 
-## Project Structure
-
-```
-health_checkup/
-├── servers.yaml           # YOUR server list (create this!)
-├── main.yaml              # Main workflow definition
-├── servers.yaml.example   # Example server configuration
-├── storage/               # Configuration files (auto-populated)
-│   ├── servers.yaml       # Copied from root automatically
-│   └── services.yaml      # Services to monitor
-├── health_reports/        # Generated reports (created automatically)
-│   ├── <ip>_health.log    # System health report per server
-│   └── <ip>_services.log  # Services status per server
-└── README.md              # This file
-```
-
----
-
 ## What Gets Checked
 
 ### System Health Checks (Sequential)
