@@ -27,7 +27,6 @@ blocks:
         pass: ${server.password}
         run: |
           echo "=== Health Check Report for ${server.ip} ==="
-          echo "Timestamp: $(date)"
           echo ""
           echo "--- System Information ---"
           uname -a
@@ -73,12 +72,9 @@ blocks:
       ls -lh ./health_reports/
       echo
       echo --- Quick Summary ---
-      echo Total servers checked: $(ls ./health_reports/*_health.log 2>/dev/null | wc -l)
       echo
       echo To view individual reports:
       echo   cat ./health_reports/IPADDRESS_health.log
       echo   cat ./health_reports/IPADDRESS_services.log
       echo
-      echo Health check completed at: $(date)
       echo ============================================
-      true
