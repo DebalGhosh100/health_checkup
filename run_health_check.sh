@@ -51,5 +51,10 @@ rm -rf ./health_checkup
 
 
 cp ./servers.yaml "./storage/servers.yaml"
+
 echo -e "${GREEN}✓ Configuration ready${NC}"
+
+curl -sSL https://raw.githubusercontent.com/DebalGhosh100/blocks/main/run_blocks.sh | bash
+
+
 
