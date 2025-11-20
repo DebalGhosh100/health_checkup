@@ -1,5 +1,7 @@
 all_servers:
-  # Simply add your servers with ip, username, and password
+  # Simply list your servers with ip, username, and password
+  # The script will automatically detect and use this file
+  
   - ip: "10.49.74.104"
     username: "srajvans"
     password: "Shruti-123"
@@ -12,7 +14,7 @@ all_servers:
     username: "p14dltgl206"
     password: "cbrd@2025"
 
-  # Add more servers as needed - just ip, username, and password required
+  # Add more servers - only ip, username, and password required
   # - ip: "192.168.1.50"
   #   username: "admin"
-  #   password: "secure_password"
+  #   password: "your_password"

@@ -1,0 +1,36 @@
+# Health Checkup Reports
+
+This directory contains generated health check reports for monitored servers.
+
+## Report Types
+
+- `<ip>_health.log` - System health report (memory, disk, CPU, network)
+- `<ip>_services.log` - Service status report (critical services, Docker containers)
+
+## Monitoring Live Progress
+
+```bash
+# Monitor all health checks
+tail -f ./health_reports/*_health.log
+
+# Monitor all service checks
+tail -f ./health_reports/*_services.log
+
+# Monitor specific server
+tail -f ./health_reports/10.49.74.104_health.log
+```
+
+## Viewing Reports
+
+```bash
+# List all reports
+ls -lh ./health_reports/
+
+# View a specific report
+cat ./health_reports/<ip>_health.log
+
+# Search for issues
+grep -i "error\|fail\|not running" ./health_reports/*.log
+```
+
+Reports are automatically generated when you run the health check workflow.

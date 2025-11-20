@@ -2,7 +2,38 @@
 
 Automated health check system for monitoring multiple servers using Cocoon workflow automation framework.
 
-> **One-Command Execution** - Check the health of all your servers with a single command!
+> **Two Steps to Health Check All Your Servers!**
+> 
+> **Step 1:** Create `servers.yaml` with your server IPs  
+> **Step 2:** Run one curl command  
+> **Done!** 🎉
+
+---
+
+## ⚡ Ultra Quick Start
+
+```bash
+# 1. Create servers.yaml
+cat > servers.yaml << 'EOF'
+all_servers:
+  - ip: "10.49.74.104"
+    username: "admin"
+    password: "your_password"
+  - ip: "10.49.74.102"
+    username: "admin"
+    password: "your_password"
+EOF
+
+# 2. Run health check
+curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/health_checkup/main/run_health_check.sh | bash
+
+# 3. View reports
+cat ./health_reports/*.log
+```
+
+**That's it!** No configuration files to edit, no complex setup. Just list your servers and run!
+
+---
 
 ## Features
 
@@ -25,22 +56,43 @@ Automated health check system for monitoring multiple servers using Cocoon workf
 - Python 3.x with `pip`
 - SSH access to target servers
 
+**Step 1: Create your servers.yaml file**
+
+Create a `servers.yaml` file in your current directory with your server list:
+
+```yaml
+all_servers:
+  - ip: "10.49.74.104"
+    username: "admin"
+    password: "your_password"
+
+  - ip: "10.49.74.102"
+    username: "admin"
+    password: "your_password"
+```
+
+**That's it! Only 3 fields required per server: ip, username, password**
+
+**Step 2: Run the health check**
+
 **Linux/Mac:**
 ```bash
-curl -sSL https://raw.githubusercontent.com/DebalGhosh100/blocks/main/run_blocks.sh | bash -s main.yaml storage
+curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/health_checkup/main/run_health_check.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
-iwr -useb https://raw.githubusercontent.com/DebalGhosh100/blocks/main/run_blocks.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/YOUR_USERNAME/health_checkup/main/run_health_check.ps1 | iex
 ```
 
-This command will:
-1. Clone the Cocoon framework temporarily
-2. Install dependencies (paramiko, pyyaml)
-3. Execute health checks on all configured servers
-4. Generate reports in `./health_reports/`
-5. Clean up framework files automatically
+The script will automatically:
+1. Detect your `servers.yaml` in the current directory
+2. Copy it to the storage directory
+3. Clone the Cocoon framework temporarily
+4. Install dependencies (paramiko, pyyaml)
+5. Execute health checks on all configured servers
+6. Generate reports in `./health_reports/`
+7. Clean up framework files automatically
 
 ---
 
@@ -67,24 +119,20 @@ pip install -r ../blocks/requirements.txt
 
 ### Step 3: Configure Servers
 
-Edit `storage/servers.yaml` to add your servers:
+Create a `servers.yaml` file in the project root with your servers:
 
 ```yaml
 all_servers:
-  - name: "Web Server 1"
-    ip: "10.49.74.104"
+  - ip: "10.49.74.104"
     username: "admin"
     password: "secure_password"
-    environment: "production"
-    role: "web"
 
-  - name: "Database Server"
-    ip: "10.49.74.105"
+  - ip: "10.49.74.105"
     username: "admin"
     password: "secure_password"
-    environment: "production"
-    role: "database"
 ```
+
+**Only 3 fields required per server!** No need for name, environment, or role fields.
 
 ### Step 4: Configure Services to Monitor
 
@@ -111,9 +159,11 @@ python3 ../blocks/blocks_executor.py main.yaml
 
 ```
 health_checkup/
+├── servers.yaml           # YOUR server list (create this!)
 ├── main.yaml              # Main workflow definition
-├── storage/               # Configuration files
-│   ├── servers.yaml       # Server definitions
+├── servers.yaml.example   # Example server configuration
+├── storage/               # Configuration files (auto-populated)
+│   ├── servers.yaml       # Copied from root automatically
 │   └── services.yaml      # Services to monitor
 ├── health_reports/        # Generated reports (created automatically)
 │   ├── <ip>_health.log    # System health report per server
@@ -254,17 +304,20 @@ grep -i "error\|fail\|not running" ./health_reports/*.log
 
 ### Adding More Servers
 
-Edit `storage/servers.yaml`:
+Simply add entries to your `servers.yaml`:
 
 ```yaml
 all_servers:
-  - name: "New Server"
-    ip: "192.168.1.100"
+  - ip: "192.168.1.100"
     username: "admin"
     password: "password"
-    environment: "staging"
-    role: "application"
+
+  - ip: "192.168.1.101"
+    username: "admin"
+    password: "password"
 ```
+
+**That's it!** Just 3 fields: ip, username, password
 
 ### Adding More Services to Monitor
 

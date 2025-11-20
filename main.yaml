@@ -1,4 +1,19 @@
 blocks:
+  # Copy servers.yaml from current directory to storage (if it exists)
+  - run: |
+      if [ -f "./servers.yaml" ]; then
+        echo "Found servers.yaml in current directory, copying to storage/"
+        mkdir -p ./storage
+        cp ./servers.yaml ./storage/servers.yaml
+        echo "✓ servers.yaml copied to storage/"
+      elif [ -f "./storage/servers.yaml" ]; then
+        echo "✓ Using existing storage/servers.yaml"
+      else
+        echo "⚠ Warning: No servers.yaml found in current directory or storage/"
+        echo "Please create a servers.yaml file with your server configurations"
+        exit 1
+      fi
+
   # Initialize health check environment
   - run: "mkdir -p ./health_reports && echo 'Health check reports directory created'"
 
@@ -19,7 +34,7 @@ blocks:
         user: ${server.username}
         pass: ${server.password}
         run: |
-          echo "=== Health Check Report for ${server.name} ==="
+          echo "=== Health Check Report for ${server.ip} ==="
           echo "Timestamp: $(date)"
           echo ""
           echo "--- System Information ---"
@@ -63,7 +78,7 @@ blocks:
           user: ${server.username}
           pass: ${server.password}
           run: |
-            echo "=== Service Status Check for ${server.name} ==="
+            echo "=== Service Status Check for ${server.ip} ==="
             echo "Timestamp: $(date)"
             echo ""
             echo "--- Checking Critical Services ---"
