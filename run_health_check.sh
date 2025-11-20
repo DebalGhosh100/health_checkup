@@ -13,7 +13,7 @@ cleanup() {
 	echo -e "ls -al"
 
 
-	rm -rf ./main.yaml
+	rm -rf ./main.yaml ./README.md
 }
 trap cleanup EXIT  # or: trap cleanup ERR, or both
 
