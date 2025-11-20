@@ -54,4 +54,7 @@ if ! curl -sSL https://raw.githubusercontent.com/DebalGhosh100/blocks/main/run_b
   exit 1
 fi
 
+rm -rf .git .gitignore main.yaml README.md run_health_check.ps1 run_health_check.sh servers.yaml.example storage
+
+
 echo -e "${GREEN}✓ Blocks script executed successfully${NC}"
