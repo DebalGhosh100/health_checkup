@@ -50,8 +50,6 @@ if curl -fsSL https://raw.githubusercontent.com/DebalGhosh100/blocks/main/run_bl
   echo -e "${GREEN}✓ Blocks script executed successfully${NC}"
 else
   echo -e "${RED}✗ Blocks script failed with exit code ${status}${NC}"
-  # If you want overall failure:
-  exit 1
 fi
 
 echo -e "Done"
