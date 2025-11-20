@@ -51,21 +51,14 @@ blocks:
 
   # Generate summary report
   - run: |
-      echo
       echo ============================================
       echo Health Check Summary
       echo ============================================
-      echo
       echo Reports generated in ./health_reports/
-      echo
-      echo Available reports:
+      echo Available reports
       ls -lh ./health_reports/
-      echo
-      echo --- Quick Summary ---
-      echo
+      echo Quick Summary 
       echo To view individual reports:
       echo   cat ./health_reports/IPADDRESS_health.log
       echo   cat ./health_reports/IPADDRESS_services.log
-      echo
       echo ============================================
-      :
