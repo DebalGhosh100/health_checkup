@@ -35,12 +35,12 @@ all_servers:
 
 **Linux/Mac:**
 ```bash
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/health_checkup/main/run_health_check.sh | bash
+curl -sSL https://raw.githubusercontent.com/DebalGhosh100/health_checkup/main/run_health_check.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
-iwr -useb https://raw.githubusercontent.com/YOUR_USERNAME/health_checkup/main/run_health_check.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/DebalGhosh100/health_checkup/main/run_health_check.ps1 | iex
 ```
 
 The script will automatically:
