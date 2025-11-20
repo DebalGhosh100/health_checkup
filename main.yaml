@@ -49,16 +49,4 @@ blocks:
         log-into: ./health_reports/${server.ip}_health.log
 
 
-  # Generate summary report
-  - run: |
-      echo ============================================
-      echo Health Check Summary
-      echo ============================================
-      echo Reports generated in ./health_reports/
-      echo Available reports
-      ls -lh ./health_reports/
-      echo Quick Summary 
-      echo To view individual reports:
-      echo   cat ./health_reports/IPADDRESS_health.log
-      echo   cat ./health_reports/IPADDRESS_services.log
-      echo ============================================
+  - run: echo 'Health checkups concluded'
