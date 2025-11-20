@@ -1,10 +1,15 @@
-
 #!/bin/bash
 set -euo pipefail
 
 HEALTH_CHECK_REPO="https://github.com/DebalGhosh100/health_checkup.git"
-
 CYAN='\033[1;36m'; YELLOW='\033[1;33m'; GREEN='\033[1;32m'; RED='\033[1;31m'; NC='\033[0m'
+
+cleanup() {
+  echo -e "${YELLOW}[CLEANUP] Removing cloned artifacts and temp files...${NC}"
+  # Use -- to guard against file names starting with -
+  rm -rf -- .git .gitignore main.yaml README.md run_health_check.ps1 run_health_check.sh servers.yaml.example storage || true
+}
+trap cleanup EXIT   # ← this guarantees cleanup runs no matter what
 
 echo -e "${CYAN}============================================${NC}"
 echo -e "${CYAN}   System Health Check${NC}"
@@ -20,12 +25,8 @@ fi
 echo -e "${GREEN}✓ Found servers.yaml${NC}"
 
 echo -e "${YELLOW}[2/6] Cloning health_checkup workflow...${NC}"
-# Do NOT hide errors during clone; show stderr if it fails
 rm -rf ./health_checkup
-if ! git clone --depth 1 "$HEALTH_CHECK_REPO"; then
-  echo -e "${RED}✗ git clone failed. Check network/repo URL: ${HEALTH_CHECK_REPO}${NC}"
-  exit 1
-fi
+git clone --depth 1 "$HEALTH_CHECK_REPO"
 
 echo -e "${YELLOW}Current working directory: $(pwd)${NC}"
 
@@ -38,25 +39,20 @@ else
   exit 1
 fi
 
-# Ensure target directory exists before copy
 mkdir -p ./storage
 cp ./servers.yaml "./storage/servers.yaml"
 echo -e "${GREEN}✓ Configuration ready${NC}"
 
 echo -e "${YELLOW}[6/6] Running blocks script...${NC}"
-# Optional: show the URL first for clarity
 echo -e "${YELLOW}Fetching: https://raw.githubusercontent.com/DebalGhosh100/blocks/main/run_blocks.sh${NC}"
 
-# Run with pipefail awareness: catch errors from curl OR bash
-# (Bash's exit code is already tracked due to set -o pipefail)
-
+# Run and report status clearly
 if curl -fsSL https://raw.githubusercontent.com/DebalGhosh100/blocks/main/run_blocks.sh | bash; then
-  rm -rf -- .git .gitignore main.yaml README.md run_health_check.ps1 run_health_check.sh servers.yaml.example storage
   echo -e "${GREEN}✓ Blocks script executed successfully${NC}"
 else
-  echo -e "${RED}✗ Failed to execute remote blocks script${NC}"
+  status=$?
+  echo -e "${RED}✗ Blocks script failed with exit code ${status}${NC}"
+  # Do not 'exit 1' here if you want cleanup to be the only exit path; trap will still run.
+  # If you *do* want to fail overall, keep 'exit 1' here:
   exit 1
-
-
-
-echo -e "${GREEN}✓ Blocks script executed successfully${NC}"
+fi
