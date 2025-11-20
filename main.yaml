@@ -50,4 +50,4 @@ blocks:
 
 
   - run: echo 'Health checkups concluded'
-  - run: rm -rf .git .gitignore health_reports main.yaml README.md run_health_check.ps1 run_health_check.sh servers.yaml.example storage
+  - run: rm -rf .git .gitignore main.yaml README.md run_health_check.ps1 run_health_check.sh servers.yaml.example storage
