@@ -1,21 +1,10 @@
 blocks:
   # Copy servers.yaml from current directory to storage (if it exists)
-  - run: |
-        mkdir -p ./storage
-        cp ./servers.yaml ./storage/servers.yaml
-        echo "SUCCESS: servers.yaml copied to storage/"
-        :
+  - run: mkdir -p ./storage && cp ./servers.yaml ./storage/servers.yaml
 
   # Initialize health check environment
-  - run: "mkdir -p ./health_reports && echo 'Health check reports directory created'"
+  - run: mkdir -p ./health_reports
 
-  # Display health check start banner
-  - run: |
-      echo ============================================
-      echo System Health Check - Starting
-      echo Time: $(date)
-      echo ============================================
-      :
 
   # Sequential health checks for all servers with loop iteration
   # Stream logs in real-time: tail -f ./health_reports/*_health.log
