@@ -1,19 +1,9 @@
 blocks:
   # Copy servers.yaml from current directory to storage (if it exists)
   - run: |
-      if [ -f ./servers.yaml ]; then
-        echo "Found servers.yaml in current directory, copying to storage/"
         mkdir -p ./storage
         cp ./servers.yaml ./storage/servers.yaml
         echo "SUCCESS: servers.yaml copied to storage/"
-      elif [ -f ./storage/servers.yaml ]; then
-        echo "SUCCESS: Using existing storage/servers.yaml"
-      else
-        echo "ERROR: No servers.yaml found in current directory or storage/"
-        echo "Please create a servers.yaml file with your server configurations"
-        exit 1
-      fi
-      true
 
   # Initialize health check environment
   - run: "mkdir -p ./health_reports && echo 'Health check reports directory created'"
