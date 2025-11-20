@@ -1,15 +1,15 @@
 blocks:
   # Copy servers.yaml from current directory to storage (if it exists)
   - run: |
-      if [ -f "./servers.yaml" ]; then
+      if [ -f ./servers.yaml ]; then
         echo "Found servers.yaml in current directory, copying to storage/"
         mkdir -p ./storage
         cp ./servers.yaml ./storage/servers.yaml
-        echo "✓ servers.yaml copied to storage/"
-      elif [ -f "./storage/servers.yaml" ]; then
-        echo "✓ Using existing storage/servers.yaml"
+        echo "SUCCESS: servers.yaml copied to storage/"
+      elif [ -f ./storage/servers.yaml ]; then
+        echo "SUCCESS: Using existing storage/servers.yaml"
       else
-        echo "⚠ Warning: No servers.yaml found in current directory or storage/"
+        echo "ERROR: No servers.yaml found in current directory or storage/"
         echo "Please create a servers.yaml file with your server configurations"
         exit 1
       fi
@@ -19,10 +19,10 @@ blocks:
 
   # Display health check start banner
   - run: |
-      echo "============================================"
-      echo "   System Health Check - Starting"
-      echo "   Time: $(date)"
-      echo "============================================"
+      echo ============================================
+      echo System Health Check - Starting
+      echo Time: $(date)
+      echo ============================================
 
   # Sequential health checks for all servers with loop iteration
   # Stream logs in real-time: tail -f ./health_reports/*_health.log
@@ -103,22 +103,22 @@ blocks:
 
   # Generate summary report
   - run: |
-      echo ""
-      echo "============================================"
-      echo "   Health Check Summary"
-      echo "============================================"
-      echo ""
-      echo "Reports generated in ./health_reports/"
-      echo ""
-      echo "Available reports:"
+      echo
+      echo ============================================
+      echo Health Check Summary
+      echo ============================================
+      echo
+      echo Reports generated in ./health_reports/
+      echo
+      echo Available reports:
       ls -lh ./health_reports/
-      echo ""
-      echo "--- Quick Summary ---"
-      echo "Total servers checked: $(ls ./health_reports/*_health.log 2>/dev/null | wc -l)"
-      echo ""
-      echo "To view individual reports:"
-      echo "  cat ./health_reports/<ip>_health.log"
-      echo "  cat ./health_reports/<ip>_services.log"
-      echo ""
-      echo "Health check completed at: $(date)"
-      echo "============================================"
+      echo
+      echo --- Quick Summary ---
+      echo Total servers checked: $(ls ./health_reports/*_health.log 2>/dev/null | wc -l)
+      echo
+      echo To view individual reports:
+      echo   cat ./health_reports/IPADDRESS_health.log
+      echo   cat ./health_reports/IPADDRESS_services.log
+      echo
+      echo Health check completed at: $(date)
+      echo ============================================
