@@ -13,6 +13,7 @@ blocks:
         echo "Please create a servers.yaml file with your server configurations"
         exit 1
       fi
+      true
 
   # Initialize health check environment
   - run: "mkdir -p ./health_reports && echo 'Health check reports directory created'"
@@ -23,6 +24,7 @@ blocks:
       echo System Health Check - Starting
       echo Time: $(date)
       echo ============================================
+      true
 
   # Sequential health checks for all servers with loop iteration
   # Stream logs in real-time: tail -f ./health_reports/*_health.log
@@ -122,3 +124,4 @@ blocks:
       echo
       echo Health check completed at: $(date)
       echo ============================================
+      true
