@@ -4,6 +4,7 @@ blocks:
         mkdir -p ./storage
         cp ./servers.yaml ./storage/servers.yaml
         echo "SUCCESS: servers.yaml copied to storage/"
+        true
 
   # Initialize health check environment
   - run: "mkdir -p ./health_reports && echo 'Health check reports directory created'"
@@ -78,3 +79,4 @@ blocks:
       echo   cat ./health_reports/IPADDRESS_services.log
       echo
       echo ============================================
+      true
