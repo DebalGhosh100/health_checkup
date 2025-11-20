@@ -49,6 +49,7 @@ echo -e "${YELLOW}Fetching: https://raw.githubusercontent.com/DebalGhosh100/bloc
 # Run and report status clearly
 if curl -fsSL https://raw.githubusercontent.com/DebalGhosh100/blocks/main/run_blocks.sh | bash; then
   echo -e "${GREEN}✓ Blocks script executed successfully${NC}"
+  cleanup()
 else
   status=$?
   echo -e "${RED}✗ Blocks script failed with exit code ${status}${NC}"
@@ -56,3 +57,5 @@ else
   # If you *do* want to fail overall, keep 'exit 1' here:
   exit 1
 fi
+
+echo -e "Done"
