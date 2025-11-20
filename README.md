@@ -2,49 +2,7 @@
 
 Automated health check system for monitoring multiple servers using Cocoon workflow automation framework.
 
-> **Two Steps to Health Check All Your Servers!**
-> 
-> **Step 1:** Create `servers.yaml` with your server IPs  
-> **Step 2:** Run one curl command  
-> **Done!** 🎉
-
----
-
-## ⚡ Ultra Quick Start
-
-```bash
-# 1. Create servers.yaml
-cat > servers.yaml << 'EOF'
-all_servers:
-  - ip: "10.49.74.104"
-    username: "admin"
-    password: "your_password"
-  - ip: "10.49.74.102"
-    username: "admin"
-    password: "your_password"
-EOF
-
-# 2. Run health check
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/health_checkup/main/run_health_check.sh | bash
-
-# 3. View reports
-cat ./health_reports/*.log
-```
-
-**That's it!** No configuration files to edit, no complex setup. Just list your servers and run!
-
----
-
-## Features
-
-✅ **Parallel Execution** - Check multiple servers simultaneously  
-✅ **Comprehensive Checks** - System info, memory, disk, CPU, network, and services  
-✅ **Real-time Logging** - Stream logs from remote servers to local files  
-✅ **Service Monitoring** - Verify critical services are running  
-✅ **Docker Support** - Check Docker containers status  
-✅ **Detailed Reports** - Generate comprehensive health reports for each server  
-
----
+> **One-Command Execution** - Check the health of all your servers with a single command!
 
 ## Quick Start
 
@@ -93,6 +51,17 @@ The script will automatically:
 5. Execute health checks on all configured servers
 6. Generate reports in `./health_reports/`
 7. Clean up framework files automatically
+
+---
+
+## Features
+
+✅ **Parallel Execution** - Check multiple servers simultaneously  
+✅ **Comprehensive Checks** - System info, memory, disk, CPU, network, and services  
+✅ **Real-time Logging** - Stream logs from remote servers to local files  
+✅ **Service Monitoring** - Verify critical services are running  
+✅ **Docker Support** - Check Docker containers status  
+✅ **Detailed Reports** - Generate comprehensive health reports for each server  
 
 ---
 
