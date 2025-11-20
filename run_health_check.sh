@@ -9,7 +9,11 @@ WORKDIR="$(mktemp -d)"
 STORAGE_DIR="./storage"
 
 cleanup() {
-  rm -rf ./main.yaml
+	echo -e "${YELLOW}Current working directory: $(pwd)${NC}"
+	echo -e "ls -al"
+
+
+	rm -rf ./main.yaml
 }
 trap cleanup EXIT  # or: trap cleanup ERR, or both
 
