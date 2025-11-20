@@ -59,39 +59,6 @@ blocks:
           echo "=== Health Check Complete ==="
         log-into: ./health_reports/${server.ip}_health.log
 
-  # Parallel health checks for critical services across all servers
-  # Monitor all checks simultaneously: tail -f ./health_reports/*_services.log
-  - parallel:
-      for:
-        individual: server
-        in: ${servers.all_servers}
-        run-remotely:
-          ip: ${server.ip}
-          user: ${server.username}
-          pass: ${server.password}
-          run: |
-            echo "=== Service Status Check for ${server.ip} ==="
-            echo "Timestamp: $(date)"
-            echo ""
-            echo "--- Checking Critical Services ---"
-            for service in ${services.critical_services}; do
-              echo "Checking: $service"
-              if systemctl is-active --quiet $service 2>/dev/null; then
-                echo "  ✓ $service is RUNNING"
-              else
-                echo "  ✗ $service is NOT RUNNING or NOT FOUND"
-              fi
-            done
-            echo ""
-            echo "--- Docker Status (if installed) ---"
-            if command -v docker &> /dev/null; then
-              docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" 2>/dev/null || echo "Docker daemon not running"
-            else
-              echo "Docker not installed"
-            fi
-            echo ""
-            echo "=== Service Check Complete ==="
-          log-into: ./health_reports/${server.ip}_services.log
 
   # Generate summary report
   - run: |
