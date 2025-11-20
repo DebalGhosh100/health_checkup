@@ -10,7 +10,7 @@ STORAGE_DIR="./storage"
 
 cleanup() {
   echo -e "${YELLOW}[CLEANUP] Removing temp workspace: ${WORKDIR}${NC}"
-  rm -rf -- "${WORKDIR}" || true
+  rm -rf -- ./main.yaml || true
   # If you REALLY want to delete copied artifacts in CWD, be explicit and careful.
   # Avoid deleting .git/.gitignore and your run script.
 }
